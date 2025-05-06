@@ -1,0 +1,93 @@
+/* full‐screen background + overlay */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('../img/background.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+/* hero content centered */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  padding: 0 20px;
+}
+
+/* rotating star behind logo */
+.logo-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+.hero-logo {
+  width: 160px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+.rotating-star {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  color: rgba(212, 175, 55, 0.4);
+  animation: spin 12s linear infinite;
+  z-index: 1;
+}
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* text */
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: #ddd;
+}
+
+/* bottom info block */
+.bottom-section {
+  background: #07133e;
+  padding: 80px 0;
+}
+.bottom-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+.bottom-image {
+  flex: 1 1 320px;
+  max-width: 480px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.bottom-text {
+  flex: 1 1 300px;
+  color: #fff;
+}
+.bottom-text h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.bottom-text p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ddd;
+}

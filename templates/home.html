@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Home – Champions League Hub{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+{% block content %}
+<section class="hero text-center text-white d-flex align-items-center justify-content-center"
+         style="background: url('{{ url_for('static', filename='img/background.jpg') }}') center/cover no-repeat;">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="logo-container mb-4">
+      <span class="rotating-star">★</span>
+      <img src="{{ url_for('static', filename='img/logo.png') }}"
+           alt="Champions League Logo" class="hero-logo">
+    </div>
+    <h1 class="display-3 fw-bold">UEFA Champions League</h1>
+    <p class="lead mb-4">Experience the thrill of Europe’s premier club football tournament</p>
+    <a href="{{ url_for('matches') }}" class="btn btn-primary btn-lg me-2">Latest Matches</a>
+    <a href="{{ url_for('groups', group_id=1) }}" class="btn btn-outline-light btn-lg">Explore Groups</a>
+  </div>
+</section>
+
+<section class="bottom-section py-5 bg-secondary text-light">
+  <div class="container d-flex flex-wrap align-items-center">
+    <img src="{{ url_for('static', filename='img/image.jpg') }}"
+         alt="Champions League Trophy" class="bottom-image me-4">
+    <div class="bottom-text">
+      <h2>About the Trophy</h2>
+      <p>Since 1956, only the greatest teams have lifted this iconic cup, symbolizing excellence on the world’s biggest stage.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

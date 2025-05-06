@@ -1,0 +1,83 @@
+/* === Controls (search + filters) === */
+.teams-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.team-search {
+  flex: 1 1 300px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 1px solid #2e344e;
+  background: #0a123a;
+  color: #fff;
+}
+.team-search::placeholder {
+  color: #888;
+}
+.group-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filter-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: #0e1862;
+  color: #ccc;
+  cursor: pointer;
+  font-weight: 500;
+}
+.filter-btn.active {
+  background: #f0c419;
+  color: #04102b;
+}
+.filter-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* === Team Grid & Cards === */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+.team-card {
+  background: #04102b;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.team-logo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #0a123a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team-logo img {
+  max-width: 48px;
+  max-height: 48px;
+}
+.team-name {
+  font-size: 1.2rem;
+  margin: 8px 0;
+  color: #fff;
+}
+.team-coach,
+.team-group,
+.team-stats {
+  margin: 4px 0;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+.team-group {
+  color: #f0c419;
+  font-weight: 500;
+}

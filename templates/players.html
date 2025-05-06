@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Players – Champions League Hub{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/player.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Champions League <span class="text-warning">Players</span></h1>
+
+  <form method="get" class="row g-2 mb-4">
+    <div class="col-md-4">
+      <input type="text" name="search" class="form-control"
+             placeholder="Search players…" value="{{ search }}">
+    </div>
+    <div class="col-md-3">
+      <select name="team" class="form-select">
+        <option value="">All Teams</option>
+        {% for tm in teams %}
+          <option value="{{ tm.team_id }}"
+            {% if team_filter==tm.team_id|string %}selected{% endif %}>
+            {{ tm.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select name="position" class="form-select">
+        <option value="">All Positions</option>
+        {% for pos in positions %}
+          <option value="{{ pos }}" {% if pos_filter==pos %}selected{% endif %}>
+            {{ pos }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary w-100">Filter</button>
+    </div>
+  </form>
+
+  <div class="row">
+    {% for p in players %}
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card bg-dark text-light h-100 border-0 p-3">
+          <div class="d-flex align-items-center mb-2">
+            <div class="badge bg-primary me-3">{{ p.jersey_number }}</div>
+            <h5 class="mb-0">{{ p.name }}</h5>
+          </div>
+          <div class="d-flex align-items-center mb-2">
+            <img src="{{ url_for('static', filename='img/logos/' ~ p.team_logo) }}"
+                 alt="{{ p.team }} logo"
+                 class="rounded-circle me-2" width="24" height="24">
+            <small>{{ p.team }}</small>
+          </div>
+          <p class="small mb-1 text-warning">{{ p.position }}</p>
+          <p class="small mb-3">{{ p.nationality }} • {{ p.age }} yrs</p>
+          <div class="d-flex">
+            <div class="flex-grow-1 text-center">
+              <h6 class="mb-1">{{ p.goals }}</h6>
+              <small>Goals</small>
+            </div>
+            <div class="flex-grow-1 text-center">
+              <h6 class="mb-1">{{ p.assists }}</h6>
+              <small>Assists</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

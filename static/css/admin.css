@@ -1,0 +1,80 @@
+/* container and title */
+.container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 0 16px;
+}
+.page-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+/* card */
+.login-card {
+  background: #04102b;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* flash alert */
+.alert {
+  padding: .75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  color: #842029;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+}
+
+/* form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.login-form label {
+  font-size: .9rem;
+  color: #ccc;
+}
+.login-form input {
+  padding: .75rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #2e344e;
+  background: #0a123a;
+  color: #fff;
+  font-size: 1rem;
+}
+.login-form input::placeholder {
+  color: #666;
+}
+
+/* button */
+.btn-primary {
+  background-color: #0056b3;
+  color: #fff;
+  padding: .75rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: #004494;
+}
+
+/* demo text */
+.demo-text {
+  margin-top: 1.5rem;
+  font-size: .85rem;
+  color: #aaa;
+  text-align: center;
+}
+.demo-text code {
+  background: #0a123a;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #f0c419;
+}

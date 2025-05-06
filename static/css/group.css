@@ -1,0 +1,58 @@
+/* Page title highlight */
+.highlight { color: #f0c419; }
+
+/* Tabs override */
+.group-tabs .nav-link {
+  color: #ccc;
+  font-weight: 500;
+}
+.group-tabs .nav-link.active {
+  color: #fff;
+  background: #0e1862;
+  border-color: #0e1862 #0e1862 transparent;
+}
+
+/* Standings card wrapper */
+.standings-card {
+  background: #04102b;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Team cell in table */
+.team-cell {
+  display: flex;
+  align-items: center;
+}
+.team-cell img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Logo circle for team cards */
+.logo-circle {
+  width: 72px;
+  height: 72px;
+  background: #0a123a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.logo-circle img {
+  max-width: 48px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
+/* Footer links */
+footer a {
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}

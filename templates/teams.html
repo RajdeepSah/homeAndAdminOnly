@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Teams – Champions League Hub{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/teams.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Champions League <span class="text-warning">Teams</span></h1>
+
+  <form method="get" action="{{ url_for('teams') }}" class="d-flex mb-4">
+    <input type="text" name="search" class="form-control me-2"
+           placeholder="Search teams…" value="{{ search_query }}">
+    <button class="btn btn-primary">Search</button>
+  </form>
+
+  <div class="mb-4">
+    <a href="{{ url_for('teams', group='', search=search_query) }}"
+       class="btn btn-outline-light me-1{% if not current_group %} active{% endif %}">
+      All Groups
+    </a>
+    {% for g in group_list %}
+      <a href="{{ url_for('teams', group=g, search=search_query) }}"
+         class="btn btn-outline-light me-1{% if current_group==g %} active{% endif %}">
+        Group {{ g }}
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="row">
+    {% for t in teams %}
+      <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card bg-dark text-light h-100 border-0 p-3">
+          <img src="{{ url_for('static', filename='img/logos/' ~ t.logo) }}"
+               alt="{{ t.team_name }} logo"
+               class="rounded-circle mb-3" width="72" height="72">
+          <h5>{{ t.team_name }}</h5>
+          <p class="small mb-1">Coach: {{ t.coach or '—' }}</p>
+          <p class="small text-warning mb-1">Group {{ t.group_name }}</p>
+          <p class="small">{{ t.wins }}W {{ t.draw }}D {{ t.loss }}L • {{ t.points }}Pts</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

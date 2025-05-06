@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Groups – Champions League Hub{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/group.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Champions League <span class="text-warning">Groups</span></h1>
+  <ul class="nav nav-tabs mb-4">
+    {% for g in groups %}
+      <li class="nav-item">
+        <a class="nav-link{% if g.group_id==current_group_id %} active{% endif %}"
+           href="{{ url_for('groups', group_id=g.group_id) }}">
+          Group {{ g.name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="card bg-dark text-light mb-5 p-4">
+    <h2 class="text-center mb-3">Group {{ current_group_name }} Standings</h2>
+    <table class="table table-dark table-striped align-middle">
+      <thead>
+        <tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>Pts</th></tr>
+      </thead>
+      <tbody>
+        {% for row in standings %}
+          <tr class="{% if row.qualified %}table-success{% elif loop.last %}table-danger{% endif %}">
+            <td>{{ loop.index }}</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <img src="{{ url_for('static', filename='img/logos/' ~ row.team_logo) }}"
+                     alt="{{ row.team_name }} logo"
+                     class="me-2" height="24">
+                {{ row.team_name }}
+              </div>
+            </td>
+            <td>{{ row.played }}</td>
+            <td>{{ row.wins }}</td>
+            <td>{{ row.draw }}</td>
+            <td>{{ row.loss }}</td>
+            <td>{{ row.points }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    {% for t in team_cards %}
+      <div class="col-md-3 mb-4">
+        <div class="card bg-dark text-light h-100 border-0">
+          <div class="card-body text-center">
+            <img src="{{ url_for('static', filename='img/logos/' ~ t.logo) }}"
+                 alt="{{ t.team_name }} logo"
+                 class="rounded-circle mb-3" width="72" height="72">
+            <h5>{{ t.team_name }}</h5>
+            <p class="mb-1">Coach: {{ t.coach }}</p>
+            <p class="text-warning">{{ t.points }} pts • Pos {{ t.position }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

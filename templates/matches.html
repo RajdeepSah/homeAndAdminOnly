@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Matches – Champions League Hub{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/matches.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Champions League <span class="text-warning">Matches</span></h1>
+
+  <form method="get" class="row g-2 mb-4">
+    <div class="col-md-6">
+      <input type="text" name="search" class="form-control"
+             placeholder="Search matches, teams, venues…" value="{{ search }}">
+    </div>
+    <div class="col-md-3">
+      <select name="team" class="form-select">
+        <option value="">All Teams</option>
+        {% for tm in teams %}
+          <option value="{{ tm.team_id }}"
+            {% if current_team==tm.team_id|string %}selected{% endif %}>
+            {{ tm.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select name="group" class="form-select">
+        <option value="">All Groups</option>
+        {% for g in groups %}
+          <option value="{{ g }}" {% if current_group==g %}selected{% endif %}>
+            Group {{ g }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  </form>
+
+  <ul class="match-tabs nav mb-4">
+    <li class="nav-item">
+      <button class="nav-link active tab" data-view="upcoming">Upcoming</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link tab" data-view="results">Results</button>
+    </li>
+  </ul>
+
+  <div id="upcoming" class="matches-grid">
+    {% for m in upcoming_matches %}
+      <div class="match-card">
+        <div class="match-datetime">{{ m.match_date }}</div>
+        <div class="match-teams">
+          <div class="team-logo">
+            <img src="{{ url_for('static', filename='img/logos/' ~ m.home_logo) }}"
+                 alt="{{ m.home_team }} logo">
+          </div>
+          <div class="vs-text">VS</div>
+          <div class="team-logo">
+            <img src="{{ url_for('static', filename='img/logos/' ~ m.away_logo) }}"
+                 alt="{{ m.away_team }} logo">
+          </div>
+        </div>
+        <div class="match-venue">{{ m.venue_name }}, {{ m.venue_city }}</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div id="results" class="matches-grid hidden">
+    {% for m in results_matches %}
+      <div class="match-card">
+        <div class="match-datetime">{{ m.match_date }}</div>
+        <div class="match-teams">
+          <div class="team-logo">
+            <img src="{{ url_for('static', filename='img/logos/' ~ m.home_logo) }}"
+                 alt="{{ m.home_team }} logo">
+          </div>
+          <div class="vs-text">{{ m.home_score }} – {{ m.away_score }}</div>
+          <div class="team-logo">
+            <img src="{{ url_for('static', filename='img/logos/' ~ m.away_logo) }}"
+                 alt="{{ m.away_team }} logo">
+          </div>
+        </div>
+        <div class="match-venue">{{ m.venue_name }}, {{ m.venue_city }}</div>
+        <div class="match-highlights badge bg-warning text-dark">Highlights</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.match-tabs .tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.match-tabs .tab').forEach(t=>t.classList.remove('active'));
+      btn.classList.add('active');
+      const up=document.getElementById('upcoming');
+      const rs=document.getElementById('results');
+      if(btn.dataset.view==='upcoming'){ up.classList.remove('hidden'); rs.classList.add('hidden'); }
+      else { rs.classList.remove('hidden'); up.classList.add('hidden'); }
+    });
+  });
+</script>
+{% endblock %}
